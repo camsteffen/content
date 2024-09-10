@@ -8,11 +8,15 @@ browser-compat: api.reportError
 
 {{APIRef("DOM")}} {{AvailableInWorkers}}
 
-The **`reportError()`** global method may be used to report errors to the console or global event handlers, emulating an uncaught JavaScript exception.
+The **`reportError()`** global function dispatches an `error` event with the given value, in the same fashion as an unhandled exception.
+This may be used to report errors to the console or global event handlers.
+
+This allows an exception to be reported without halting the current function,
+also ensuring that stack trace information is accurately reported.
 
 This feature is primarily intended for custom event-dispatching or callback-manipulating libraries.
 Libraries can use this feature to catch errors in callback code and re-throw them to the top level handler.
-This ensures that an exception in one callback will not prevent others from being handled, while at the same time ensuring that stack trace information is still readily available for debugging at the top level.
+It may also be useful in application code to report an unexpected error that was caught.
 
 <!-- {{EmbedInteractiveExample("pages/js/self-reporterror.html")}} -->
 
